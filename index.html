@@ -1,1 +1,46 @@
-Wsh bien?
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>BRINKS</title>
+  </head>
+  <body>
+
+    <div id = "app">
+      <h1>{{message}}</h1>
+
+      <h3>Contributeurs</h3>
+      <ul>
+        <li>{{contributeurs[0]}}. Paye : {{salaire.leith}}€</li>
+        <li>{{contributeurs[1]}}. Paye : {{salaire.voisin}}€</li>
+        <li>{{contributeurs[2]}}. Paye : {{salaire.leFrereDeTonOncle}}€</li>
+      </ul>
+
+      <p>Paye totale : {{total}}</p>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:"trkl ou quoi?",
+          contributeurs: ['Leith Chakroun', 'Ton voisin', 'Le frère de ton oncle'],
+          salaire: {
+            leith: 69413,
+            voisin: 7,
+            leFrereDeTonOncle:0,
+          },
+        },
+        computed: {
+          total(){
+            return this.salaire.leith + this.salaire.voisin + this.salaire.leFrereDeTonOncle
+          }
+        }
+      })
+    </script>
+
+  </body>
+</html>
