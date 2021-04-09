@@ -9,14 +9,19 @@
     <div id = "app">
       <h1>{{message}}</h1>
 
-      <h3>Contributeurs</h3>
+      <h3>Les meilleurs sons de PNL</h3>
       <ul>
-        <li>{{contributeurs[0]}}. Paye : {{salaire.leith}}€</li>
-        <li>{{contributeurs[1]}}. Paye : {{salaire.voisin}}€</li>
-        <li>{{contributeurs[2]}}. Paye : {{salaire.leFrereDeTonOncle}}€</li>
+        <li v-for="item in chansons">
+          <a v-bind:href="item.url">{{item.nom}}</a> -- Durée : {{item.duree}} min
+        </li>
       </ul>
 
-      <p>Paye totale : {{total}}</p>
+      <p>Durée totale : {{total}} min</p>
+
+      <label for="change-favori">Quel est ton son préféré ? :</label>
+      <input id ="change-favori" type="text" v-model="chansonFavorie"/>
+
+      <p v-if="chansonFavorie != 0">Ton son préféré est : {{chansonFavorie}}</p>
 
     </div>
 
@@ -26,19 +31,37 @@
       const app = new Vue({
         el: '#app',
         data: {
-          message:"trkl ou quoi?",
-          contributeurs: ['Leith Chakroun', 'Ton voisin', 'Le frère de ton oncle'],
-          salaire: {
-            leith: 69413,
-            voisin: 7,
-            leFrereDeTonOncle:0,
-          },
+          chansonFavorie:null,
+          message:"QUE LA FAMILLE",
+          chansons: [
+            {
+              nom: "J\'UDG",
+              duree: 5,
+              url: "https://www.youtube.com/watch?v=CEbJwZOkvDM"
+            },
+            {
+              nom: "Simba",
+              duree: 3,
+              url: "https://www.youtube.com/watch?v=6NonS60QIJA"
+            },
+            {
+              nom: "J\'suis PNL",
+              duree: 3,
+              url: "https://www.youtube.com/watch?v=w7lu-cNnYC8"
+            },
+          ]
         },
-        computed: {
-          total(){
-            return this.salaire.leith + this.salaire.voisin + this.salaire.leFrereDeTonOncle
-          }
-        }
+        methods:{
+        },
+        computed:{
+            total(){
+              let total = 0
+              this.chansons.forEach(element => {
+                total += element.duree
+              });
+              return total
+            }
+          },
       })
     </script>
 
